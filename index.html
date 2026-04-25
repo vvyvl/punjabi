@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🥒 Punjabi Samosa Website - Music & Recipes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ===== BACKGROUND AUDIO PLAYER ===== -->
+    <audio id="bgMusic" loop>
+        <source src="punjabi-song.mp3" type="audio/mpeg">
+        Your browser does not support the audio element.
+    </audio>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ===== WELCOME POPUP ===== -->
+    <div id="welcomePopup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span>
+            <h2>🥒 ਸਵਾਗਤਮ! Welcome! 🥒</h2>
+            <p>Welcome to the <strong>Punjabi Samosa Website</strong></p>
+            <p>🎵 Music is now playing in the background!</p>
+            <p>Explore our delicious samosa recipes, gallery, and chutneys!</p>
+            <button class="popup-btn">Let's Begin! 🚀</button>
+        </div>
+    </div>
+
+    <!-- ===== HEADER ===== -->
+    <header class="header">
+        <div class="container">
+            <h1>🥒 Punjabi Samosa Website 🥒</h1>
+            <p class="tagline">A celebration of authentic Punjabi samosas with traditional music!</p>
+            <div class="music-controls">
+                <button id="playBtn" class="music-btn">▶️ Play</button>
+                <button id="pauseBtn" class="music-btn">⏸️ Pause</button>
+                <button id="muteBtn" class="music-btn">🔇 Mute</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="container">
+        <!-- ABOUT SECTION -->
+        <section id="about" class="section">
+            <h2>🌟 About Punjabi Samosa</h2>
+            <div class="content-grid">
+                <div class="card">
+                    <h3>📜 History</h3>
+                    <p>The samosa is a deep-fried pastry with a savory filling, originating from Central Asia and deeply rooted in Punjabi cuisine. It's a beloved snack across India, Pakistan, and by Indian diaspora worldwide.</p>
+                </div>
+                <div class="card">
+                    <h3>🇮🇳 Cultural Significance</h3>
+                    <p>In Punjab, samosas are an integral part of celebrations, festivals, and daily gatherings. They represent hospitality and are often served with chai during family meetups and special occasions.</p>
+                </div>
+                <div class="card">
+                    <h3>❤️ Why We Love Samosas</h3>
+                    <p>The perfect combination of crispy exterior, flavorful spiced filling, and the joy of eating them with loved ones. Samosas bring people together and create lasting memories!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RECIPE SECTION -->
+        <section id="recipe" class="section">
+            <h2>👨‍🍳 Traditional Punjabi Samosa Recipe</h2>
+            
+            <div class="recipe-container">
+                <div class="recipe-part">
+                    <h3>🥘 Ingredients</h3>
+                    
+                    <h4>For the Dough:</h4>
+                    <ul>
+                        <li>2 cups All-purpose flour</li>
+                        <li>½ cup Ghee or Vegetable oil</li>
+                        <li>½ teaspoon Salt</li>
+                        <li>¼ teaspoon Baking soda</li>
+                        <li>Warm water (as needed)</li>
+                    </ul>
+
+                    <h4>For the Filling:</h4>
+                    <ul>
+                        <li>500g Potatoes (boiled & mashed)</li>
+                        <li>100g Green peas</li>
+                        <li>2 Green chilies (finely chopped)</li>
+                        <li>1 tablespoon Ginger-garlic paste</li>
+                        <li>½ teaspoon Cumin seeds</li>
+                        <li>½ teaspoon Coriander powder</li>
+                        <li>¼ teaspoon Garam masala</li>
+                        <li>¼ teaspoon Red chili powder</li>
+                        <li>½ teaspoon Mango powder (amchur)</li>
+                        <li>Salt to taste</li>
+                        <li>Fresh coriander leaves</li>
+                        <li>2 tablespoons Oil</li>
+                    </ul>
+                </div>
+
+                <div class="recipe-part">
+                    <h3>👣 Step-by-Step Instructions</h3>
+                    
+                    <h4>Preparing the Dough:</h4>
+                    <ol>
+                        <li>Mix flour, salt, and baking soda in a bowl</li>
+                        <li>Add ghee and mix until it resembles breadcrumbs</li>
+                        <li>Add warm water gradually and knead into a stiff dough</li>
+                        <li>Cover and let rest for 30 minutes</li>
+                    </ol>
+
+                    <h4>Making the Filling:</h4>
+                    <ol>
+                        <li>Heat oil in a pan and add cumin seeds</li>
+                        <li>Add ginger-garlic paste and sauté for 1 minute</li>
+                        <li>Add green chilies and cook for 30 seconds</li>
+                        <li>Add boiled mashed potatoes and peas</li>
+                        <li>Add all spices and mix well</li>
+                        <li>Add fresh coriander leaves</li>
+                        <li>Cook for 3-4 minutes and let cool completely</li>
+                    </ol>
+
+                    <h4>Assembling & Frying:</h4>
+                    <ol>
+                        <li>Divide dough into small balls (about 1 inch diameter)</li>
+                        <li>Roll each ball into a thin circle</li>
+                        <li>Cut the circle in half</li>
+                        <li>Make a cone shape by folding the semicircle</li>
+                        <li>Fill with spiced potato mixture</li>
+                        <li>Seal the top by pressing edges</li>
+                        <li>Deep fry in hot oil until golden brown</li>
+                        <li>Drain on paper towels</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="tips-box">
+                <h3>💡 Pro Tips:</h3>
+                <ul>
+                    <li>Keep the dough stiff to make folding easier</li>
+                    <li>Oil should be hot enough (around 350°F) for perfect crispiness</li>
+                    <li>Don't overfill the samosa as it may burst during frying</li>
+                    <li>Let the filling cool before filling samosas</li>
+                    <li>Serve hot with mint chutney or tamarind sauce</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- GALLERY SECTION -->
+        <section id="gallery" class="section">
+            <h2>🖼️ Samosa Gallery</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #ff6b35, #f7931e);">
+                        <span>🥒</span>
+                    </div>
+                    <p>Golden Samosa</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #f7931e, #ffa500);">
+                        <span>🥒</span>
+                    </div>
+                    <p>Crispy Delight</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #d4641b, #ff6b35);">
+                        <span>🥒</span>
+                    </div>
+                    <p>Punjabi Special</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #ff8c00, #ffa500);">
+                        <span>🥒</span>
+                    </div>
+                    <p>Perfect Samosa</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #ff6347, #ff6b35);">
+                        <span>🥒</span>
+                    </div>
+                    <p>Fresh & Hot</p>
+                </div>
+                <div class="gallery-item">
+                    <div class="gallery-image" style="background: linear-gradient(135deg, #ffd700, #f7931e);">
+                        <span>🥒</span>
+                    </div>
+                    <p>Traditional Style</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CHUTNEY SECTION -->
+        <section id="chutneys" class="section">
+            <h2>🫶 Chutney Guide</h2>
+            <div class="content-grid">
+                <div class="card chutney-card">
+                    <h3>🌿 Mint Chutney</h3>
+                    <p><strong>Ingredients:</strong> Fresh mint, coriander, green chilies, coconut, lemon juice, salt</p>
+                    <p><strong>Best with:</strong> Samosas, pakoras, spring rolls</p>
+                    <p><strong>Flavor:</strong> Cool, refreshing, and tangy with a spicy kick</p>
+                </div>
+                <div class="card chutney-card">
+                    <h3>🍋 Tamarind Chutney</h3>
+                    <p><strong>Ingredients:</strong> Tamarind, jaggery, cumin, ginger, salt, red chili powder</p>
+                    <p><strong>Best with:</strong> All snacks and street food</p>
+                    <p><strong>Flavor:</strong> Sweet, sour, and mildly spicy</p>
+                </div>
+                <div class="card chutney-card">
+                    <h3>🌶️ Red Chili Chutney</h3>
+                    <p><strong>Ingredients:</strong> Red chilies, garlic, cumin seeds, salt, oil</p>
+                    <p><strong>Best with:</strong> For spice lovers</p>
+                    <p><strong>Flavor:</strong> Bold, fiery, and intensely spicy</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contact" class="section">
+            <h2>📧 Get in Touch</h2>
+            <p>Have questions or suggestions about samosas? We'd love to hear from you!</p>
+            <form id="contactForm" class="contact-form">
+                <div class="form-group">
+                    <label for="name">Your Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email Address:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Message:</label>
+                    <textarea id="message" name="message" rows="5" required></textarea>
+                </div>
+                <button type="submit" class="btn">Send Message 📤</button>
+            </form>
+        </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Punjabi Samosa Website. Made with ❤️ for samosa lovers everywhere!</p>
+            <p>🥒 Keyboard Shortcuts: <strong>P</strong> - Play | <strong>SPACE</strong> - Toggle | <strong>M</strong> - Mute 🎵</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
