@@ -1,0 +1,720 @@
+/* ================================================
+   PUNJABI SAMOSA WEBSITE - STYLE.CSS
+   Beautiful Responsive Design with Punjabi Colors
+   ================================================ */
+
+/* ===== CSS VARIABLES ===== */
+:root {
+    --primary-orange: #ff6b35;
+    --secondary-gold: #ffd700;
+    --accent-orange: #f7931e;
+    --brown: #d4641b;
+    --light-bg: #fff5f0;
+    --dark-text: #333;
+    --white: #ffffff;
+    --shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+    --transition: all 0.3s ease;
+}
+
+/* ===== UNIVERSAL STYLES ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #fff5f0 0%, #ffe8d6 100%);
+    color: var(--dark-text);
+    line-height: 1.6;
+    background-attachment: fixed;
+}
+
+/* ===== CONTAINER ===== */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ===== TYPOGRAPHY ===== */
+h1, h2, h3, h4 {
+    color: var(--brown);
+    margin-bottom: 1rem;
+}
+
+h1 {
+    font-size: 2.5rem;
+    text-shadow: 2px 2px 4px rgba(212, 100, 27, 0.1);
+}
+
+h2 {
+    font-size: 2rem;
+    text-align: center;
+    margin: 2rem 0 1.5rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+}
+
+h4 {
+    font-size: 1.2rem;
+    margin-top: 1rem;
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--primary-orange);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+a:hover {
+    color: var(--accent-orange);
+    text-decoration: underline;
+}
+
+/* ===== HEADER ===== */
+.header {
+    background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-orange) 100%);
+    color: var(--white);
+    padding: 3rem 0;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header h1 {
+    color: var(--white);
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    animation: slideDown 0.5s ease;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    opacity: 0.95;
+}
+
+/* ===== MUSIC CONTROLS ===== */
+.music-controls {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.music-btn {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    border: 2px solid var(--white);
+    padding: 0.7rem 1.2rem;
+    font-size: 0.95rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+}
+
+.music-btn:hover {
+    background: var(--white);
+    color: var(--primary-orange);
+    transform: translateY(-2px);
+}
+
+.music-btn:active {
+    transform: scale(0.95);
+}
+
+/* ===== MAIN CONTENT ===== */
+main {
+    padding: 2rem 0;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+    background: var(--white);
+    padding: 3rem 2rem;
+    margin: 2rem 0;
+    border-radius: 15px;
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.6s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== CARDS ===== */
+.content-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.card {
+    background: linear-gradient(135deg, #fff9f3 0%, #ffe8d6 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    border-left: 5px solid var(--primary-orange);
+    transition: var(--transition);
+    box-shadow: 0 2px 10px rgba(255, 107, 53, 0.1);
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow);
+}
+
+.card h3 {
+    color: var(--brown);
+    margin-bottom: 1rem;
+}
+
+.card p {
+    color: #555;
+    line-height: 1.8;
+}
+
+/* ===== RECIPE SECTION ===== */
+.recipe-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.recipe-part {
+    background: linear-gradient(135deg, #fff9f3 0%, #ffe8d6 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid var(--accent-orange);
+}
+
+.recipe-part h3 {
+    color: var(--brown);
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--primary-orange);
+}
+
+.recipe-part h4 {
+    color: var(--primary-orange);
+    margin-top: 1.5rem;
+}
+
+.recipe-part ul,
+.recipe-part ol {
+    margin-left: 2rem;
+    line-height: 2;
+}
+
+.recipe-part li {
+    margin-bottom: 0.5rem;
+}
+
+.tips-box {
+    background: linear-gradient(135deg, #fff9f3 0%, #fff0e6 100%);
+    padding: 2rem;
+    margin-top: 2rem;
+    border-radius: 10px;
+    border: 3px solid var(--secondary-gold);
+    border-left: 8px solid var(--secondary-gold);
+}
+
+.tips-box h3 {
+    color: var(--brown);
+}
+
+.tips-box ul {
+    margin-left: 2rem;
+    line-height: 2;
+}
+
+/* ===== GALLERY ===== */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.gallery-item {
+    text-align: center;
+    transition: var(--transition);
+}
+
+.gallery-image {
+    width: 100%;
+    aspect-ratio: 1;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 4rem;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.2);
+}
+
+.gallery-image:hover {
+    transform: scale(1.05) rotate(2deg);
+    box-shadow: var(--shadow);
+}
+
+.gallery-item p {
+    margin-top: 1rem;
+    font-weight: 600;
+    color: var(--brown);
+}
+
+/* ===== CHUTNEY SECTION ===== */
+.chutney-card {
+    background: linear-gradient(135deg, #fff9f3 0%, #ffe8d6 100%);
+}
+
+.chutney-card h3 {
+    color: var(--primary-orange);
+    border-bottom: 2px dashed var(--accent-orange);
+    padding-bottom: 0.5rem;
+}
+
+.chutney-card strong {
+    color: var(--brown);
+}
+
+/* ===== CONTACT FORM ===== */
+.contact-form {
+    max-width: 600px;
+    margin: 2rem auto;
+    background: linear-gradient(135deg, #fff9f3 0%, #ffe8d6 100%);
+    padding: 2rem;
+    border-radius: 10px;
+    border: 2px solid var(--primary-orange);
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--brown);
+}
+
+.form-group input,
+.form-group textarea {
+    width: 100%;
+    padding: 0.75rem;
+    border: 2px solid var(--accent-orange);
+    border-radius: 5px;
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-orange);
+    box-shadow: 0 0 10px rgba(255, 107, 53, 0.3);
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+    background: linear-gradient(135deg, var(--primary-orange), var(--accent-orange));
+    color: var(--white);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+
+.btn:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* ===== TOAST NOTIFICATION ===== */
+.toast {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background: var(--primary-orange);
+    color: var(--white);
+    padding: 1rem 1.5rem;
+    border-radius: 50px;
+    box-shadow: var(--shadow);
+    font-weight: 600;
+    opacity: 0;
+    transform: translateY(100px);
+    transition: var(--transition);
+    z-index: 1000;
+    max-width: 300px;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== POPUP MODAL ===== */
+.popup {
+    display: none;
+    position: fixed;
+    z-index: 999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s ease;
+}
+
+.popup-content {
+    background: linear-gradient(135deg, var(--primary-orange) 0%, var(--accent-orange) 100%);
+    color: var(--white);
+    padding: 3rem;
+    border-radius: 15px;
+    max-width: 500px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+    position: relative;
+    animation: slideDown 0.4s ease;
+}
+
+.popup-content h2 {
+    color: var(--white);
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.popup-content p {
+    font-size: 1.05rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.close {
+    color: var(--white);
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.close:hover {
+    transform: scale(1.2);
+}
+
+.popup-btn {
+    background: var(--white);
+    color: var(--primary-orange);
+    border: none;
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 700;
+    transition: var(--transition);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.popup-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: linear-gradient(135deg, var(--brown) 0%, var(--primary-orange) 100%);
+    color: var(--white);
+    text-align: center;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.footer p {
+    margin-bottom: 0.5rem;
+}
+
+/* ===== RESPONSIVE DESIGN ===== */
+
+/* Tablet (768px and below) */
+@media (max-width: 768px) {
+    .header h1 {
+        font-size: 2rem;
+    }
+
+    .tagline {
+        font-size: 1rem;
+    }
+
+    .music-controls {
+        gap: 8px;
+    }
+
+    .music-btn {
+        padding: 0.6rem 1rem;
+        font-size: 0.9rem;
+    }
+
+    .recipe-container {
+        grid-template-columns: 1fr;
+    }
+
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .section {
+        padding: 2rem 1rem;
+    }
+
+    .popup-content {
+        padding: 2rem;
+        margin: 1rem;
+    }
+
+    .toast {
+        bottom: 20px;
+        right: 20px;
+        max-width: 250px;
+        padding: 0.75rem 1.25rem;
+    }
+}
+
+/* Mobile (480px and below) */
+@media (max-width: 480px) {
+    .header {
+        padding: 2rem 0;
+    }
+
+    .header h1 {
+        font-size: 1.5rem;
+    }
+
+    .tagline {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .music-controls {
+        gap: 5px;
+    }
+
+    .music-btn {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.85rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+    }
+
+    .section {
+        padding: 1.5rem 1rem;
+        margin: 1rem 0;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    .recipe-part {
+        padding: 1.5rem;
+    }
+
+    .gallery-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .gallery-image {
+        font-size: 3rem;
+    }
+
+    .contact-form {
+        padding: 1.5rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.95rem;
+    }
+
+    .popup-content {
+        padding: 1.5rem;
+        margin: 1rem;
+        max-width: 90%;
+    }
+
+    .popup-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .popup-content p {
+        font-size: 1rem;
+    }
+
+    .close {
+        font-size: 1.5rem;
+        right: 15px;
+        top: 15px;
+    }
+
+    .toast {
+        bottom: 15px;
+        right: 15px;
+        max-width: 200px;
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+    }
+
+    .footer {
+        padding: 1.5rem;
+    }
+
+    .footer p {
+        font-size: 0.9rem;
+    }
+}
+
+/* Extra small (320px and below) */
+@media (max-width: 320px) {
+    .header h1 {
+        font-size: 1.3rem;
+    }
+
+    .music-btn {
+        padding: 0.4rem 0.6rem;
+        font-size: 0.8rem;
+    }
+
+    h2 {
+        font-size: 1.3rem;
+    }
+
+    .section {
+        padding: 1rem;
+        margin: 0.5rem 0;
+    }
+}
+
+/* ===== ANIMATIONS FOR BUTTONS ===== */
+button {
+    position: relative;
+    overflow: hidden;
+}
+
+button span {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.6);
+    transform: scale(0);
+    animation: ripple 0.6s ease-out;
+}
+
+@keyframes ripple {
+    to {
+        transform: scale(4);
+        opacity: 0;
+    }
+}
+
+/* ===== PRINT STYLES ===== */
+@media print {
+    .header,
+    .footer,
+    .music-controls,
+    .contact-form,
+    .popup {
+        display: none;
+    }
+
+    .section {
+        page-break-inside: avoid;
+    }
+}
+
+/* ===== LIGHT MODE (default) ===== */
+/* Website already uses light mode colors */
+
+/* ===== ACCESSIBILITY ===== */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+    .card {
+        border-width: 2px;
+    }
+
+    button {
+        border-width: 2px;
+    }
+}
+
+/* ===== END OF STYLESHEET ===== */
