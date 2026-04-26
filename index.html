@@ -1,247 +1,336 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Punjabi</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>punjabi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=Kalam:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:'Poppins',sans-serif; background:#0d1f0f; color:white; overflow-x:hidden; }
+
+  /* SPLASH */
+  #splash {
+    position:fixed; inset:0; z-index:9999;
+    background:#0d1f0f;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    cursor:pointer;
+    transition:opacity 1s ease;
+  }
+  #splash.gone { opacity:0; pointer-events:none; }
+  .splash-rings {
+    position:absolute; inset:0;
+    pointer-events:none;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(245,197,24,0.08) 0%, transparent 60%),
+      radial-gradient(circle at 20% 80%, rgba(255,107,0,0.1) 0%, transparent 40%);
+  }
+  .big-samosa {
+    font-size:120px;
+    animation:wobble 3s ease-in-out infinite;
+    filter:drop-shadow(0 0 40px rgba(255,150,0,0.5));
+  }
+  @keyframes wobble {
+    0%,100% { transform:rotate(-8deg) scale(1); }
+    50% { transform:rotate(8deg) scale(1.1) translateY(-10px); }
+  }
+  .splash-title {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(42px,9vw,80px);
+    color:#F5C518;
+    margin-top:20px; line-height:1;
+    text-align:center;
+  }
+  .splash-punjabi {
+    font-family:'Kalam',cursive;
+    color:rgba(255,255,255,0.6);
+    font-size:20px;
+    margin-top:10px;
+    letter-spacing:4px;
+  }
+  .tap-btn {
+    margin-top:44px;
+    padding:18px 56px;
+    background:#FF6B00;
+    color:white;
+    font-family:'Poppins',sans-serif;
+    font-weight:600;
+    font-size:18px;
+    border:none; border-radius:50px;
+    cursor:pointer;
+    animation:glow 2s ease-in-out infinite;
+    letter-spacing:2px;
+    text-transform:uppercase;
+    position:relative;
+    z-index:10;
+  }
+  @keyframes glow {
+    0%,100% { box-shadow:0 0 0 0 rgba(255,107,0,0.5); }
+    50% { box-shadow:0 0 0 18px rgba(255,107,0,0); }
+  }
+  .tap-hint {
+    margin-top:14px;
+    color:rgba(255,255,255,0.35);
+    font-size:13px;
+    display:flex; align-items:center; gap:6px;
+  }
+
+  /* MUSIC BAR */
+  #mbar {
+    position:fixed; bottom:24px; right:24px; z-index:200;
+    background:rgba(20,60,25,0.95);
+    border:2px solid #F5C518;
+    border-radius:50px;
+    padding:10px 22px;
+    display:flex; align-items:center; gap:12px;
+    cursor:pointer;
+    transition:transform 0.2s;
+    backdrop-filter:blur(8px);
+  }
+  #mbar:hover { transform:scale(1.06); }
+  .bars { display:flex; gap:3px; align-items:flex-end; height:22px; }
+  .bar { width:3px; background:#F5C518; border-radius:2px; animation:bb var(--d) ease-in-out infinite alternate; }
+  .bar:nth-child(1){--d:.35s;height:7px}
+  .bar:nth-child(2){--d:.55s;height:15px}
+  .bar:nth-child(3){--d:.45s;height:20px}
+  .bar:nth-child(4){--d:.65s;height:11px}
+  .bar:nth-child(5){--d:.4s;height:17px}
+  @keyframes bb { from{transform:scaleY(0.25)} to{transform:scaleY(1)} }
+  .bars.paused .bar { animation-play-state:paused; transform:scaleY(0.25); }
+  #mlabel { font-size:13px; color:rgba(255,255,255,0.8); white-space:nowrap; }
+
+  /* HERO */
+  #hero {
+    min-height:100vh;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    text-align:center;
+    padding:80px 30px;
+    position:relative; overflow:hidden;
+  }
+  .hero-bg {
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(255,107,0,0.18) 0%, transparent 55%),
+      radial-gradient(ellipse at 20% 80%, rgba(245,197,24,0.08) 0%, transparent 40%),
+      #0d1f0f;
+  }
+  .dot-grid {
+    position:absolute; inset:0; opacity:0.06;
+    background-image:radial-gradient(circle, #F5C518 1px, transparent 1px);
+    background-size:36px 36px;
+  }
+  .hero-eyebrow {
+    font-family:'Kalam',cursive;
+    color:#FF6B00; font-size:22px;
+    letter-spacing:4px; position:relative; margin-bottom:12px;
+  }
+  .hero-h1 {
+    font-family:'Playfair Display',serif;
+    font-size:clamp(54px,10vw,110px);
+    line-height:0.9; position:relative; margin-bottom:28px;
+  }
+  .hero-h1 em { color:#F5C518; font-style:italic; }
+  .hero-samosa {
+    font-size:clamp(90px,18vw,160px);
+    display:block; position:relative;
+    animation:float 5s ease-in-out infinite;
+    filter:drop-shadow(0 16px 48px rgba(255,107,0,0.35));
+    margin:10px auto;
+  }
+  @keyframes float {
+    0%,100%{transform:translateY(0) rotate(-6deg)}
+    50%{transform:translateY(-22px) rotate(6deg)}
+  }
+  .hero-sub {
+    font-size:clamp(15px,2vw,20px);
+    color:rgba(255,255,255,0.6);
+    font-weight:300; max-width:520px;
+    line-height:1.8; position:relative; margin-top:16px;
+  }
+
+  /* TICKER */
+  .band { background:#FF6B00; padding:14px 0; overflow:hidden; white-space:nowrap; }
+  .band-inner {
+    display:inline-block;
+    animation:marquee 22s linear infinite;
+    font-family:'Kalam',cursive; font-size:20px; letter-spacing:5px; color:white;
+  }
+  @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+  /* LOVE */
+  #love { padding:100px 40px; max-width:900px; margin:0 auto; text-align:center; }
+  #love h2 { font-family:'Playfair Display',serif; font-size:clamp(36px,5vw,64px); line-height:1.1; margin-bottom:30px; }
+  #love h2 span { color:#F5C518; }
+  #love p { font-size:18px; color:rgba(255,255,255,0.65); font-weight:300; line-height:1.9; margin-bottom:16px; }
+  .quote {
+    font-family:'Playfair Display',serif; font-style:italic;
+    font-size:clamp(22px,3vw,34px); color:#F5C518;
+    margin:50px 0; line-height:1.4; position:relative; padding:0 30px;
+  }
+  .quote::before, .quote::after {
+    content:'"'; font-size:80px; color:rgba(245,197,24,0.15);
+    position:absolute; font-style:normal; line-height:1;
+  }
+  .quote::before { top:-20px; left:0; }
+  .quote::after { content:'"'; bottom:-40px; right:0; }
+
+  /* FACTS */
+  #facts { background:#111f12; padding:80px 40px; }
+  .facts-head { text-align:center; margin-bottom:50px; }
+  .facts-head h2 { font-family:'Playfair Display',serif; font-size:clamp(32px,4vw,52px); color:white; }
+  .facts-head h2 span { color:#FF6B00; }
+  .eyebrow { font-family:'Kalam',cursive; color:#FF6B00; font-size:18px; letter-spacing:3px; display:block; margin-bottom:8px; }
+  .facts-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:24px; max-width:1000px; margin:0 auto; }
+  .fact-card {
+    background:#1a3020; border:1px solid rgba(245,197,24,0.15);
+    border-radius:20px; padding:32px 24px; text-align:center;
+    transition:transform 0.3s, border-color 0.3s;
+  }
+  .fact-card:hover { transform:translateY(-6px); border-color:rgba(245,197,24,0.5); }
+  .fact-icon { font-size:48px; display:block; margin-bottom:16px; }
+  .fact-title { font-family:'Playfair Display',serif; font-size:20px; color:#F5C518; margin-bottom:10px; }
+  .fact-text { font-size:14px; color:rgba(255,255,255,0.55); font-weight:300; line-height:1.7; }
+
+  /* CLOSER */
+  #closer { padding:120px 40px; text-align:center; position:relative; overflow:hidden; }
+  #closer::before {
+    content:'🫓'; position:absolute; font-size:400px; opacity:0.04;
+    top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none;
+  }
+  #closer h2 { font-family:'Playfair Display',serif; font-size:clamp(40px,7vw,80px); line-height:1.1; position:relative; }
+  #closer h2 em { color:#F5C518; font-style:italic; }
+  #closer p { font-family:'Kalam',cursive; font-size:24px; color:rgba(255,255,255,0.5); margin-top:20px; letter-spacing:3px; }
+  .closer-samosa { font-size:80px; display:block; margin:30px auto; animation:spin-slow 8s linear infinite; }
+  @keyframes spin-slow { to{transform:rotate(360deg);} }
+
+  footer { background:#060e07; text-align:center; padding:32px; color:rgba(255,255,255,0.3); font-size:13px; font-weight:300; }
+  footer span { color:#F5C518; font-family:'Playfair Display',serif; font-size:20px; display:block; margin-bottom:8px; }
+</style>
 </head>
 <body>
-    <!-- ===== BACKGROUND AUDIO PLAYER ===== -->
-    <audio id="bgMusic" loop>
-        <source src="punjabi.mp3" type="audio/mpeg">
-        Your browser does not support the audio element.
-    </audio>
 
-    <!-- ===== TOAST NOTIFICATION ===== -->
-    <div id="toast" class="toast"></div>
+<audio id="song" src="punjabi.mp3" loop></audio>
 
-    <!-- ===== WELCOME POPUP ===== -->
-    <div id="welcomePopup" class="popup">
-        <div class="popup-content">
-            <span class="close">&times;</span>
-            <h2>🥒 ਸਵਾਗਤਮ! Welcome! 🥒</h2>
-            <p>Welcome to the <strong>Punjabi Samosa Website</strong></p>
-            <p>🎵 Music is now playing in the background!</p>
-            <p>Explore our delicious samosa recipes, gallery, and chutneys!</p>
-            <button class="popup-btn">Let's Begin! 🚀</button>
-        </div>
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-rings"></div>
+  <div class="big-samosa">🫓</div>
+  <div class="splash-title">Samosa &amp; Vibes</div>
+  <div class="splash-punjabi">ਪੰਜਾਬ ਦਾ ਪਿਆਰ</div>
+  <button class="tap-btn" id="enterbtn">Enter ✦</button>
+  <div class="tap-hint">🎵 Your song plays on entry</div>
+</div>
+
+<!-- MUSIC BAR -->
+<div id="mbar" onclick="toggle()">
+  <span style="font-size:18px">🎵</span>
+  <span id="mlabel">Now Playing</span>
+  <div class="bars" id="bars">
+    <div class="bar"></div><div class="bar"></div><div class="bar"></div>
+    <div class="bar"></div><div class="bar"></div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="dot-grid"></div>
+  <div class="hero-eyebrow">✦ ਪੰਜਾਬ ਤੋਂ ✦</div>
+  <h1 class="hero-h1">The <em>Golden</em><br/>Triangle.</h1>
+  <span class="hero-samosa">🫓</span>
+  <p class="hero-sub">Crispy. Spiced. Warm. Three corners, a thousand flavours — and a song that hits just right.</p>
+</section>
+
+<!-- TICKER -->
+<div class="band">
+  <span class="band-inner">
+    ✦ ALOO &nbsp;&nbsp; ✦ PYAZ &nbsp;&nbsp; ✦ MIRCH &nbsp;&nbsp; ✦ MASALA &nbsp;&nbsp; ✦ DHANIA &nbsp;&nbsp; ✦ IMLI &nbsp;&nbsp; ✦ ZEERA &nbsp;&nbsp; ✦ PUDINA &nbsp;&nbsp; ✦ ALOO &nbsp;&nbsp; ✦ PYAZ &nbsp;&nbsp; ✦ MIRCH &nbsp;&nbsp; ✦ MASALA &nbsp;&nbsp; ✦ DHANIA &nbsp;&nbsp; ✦ IMLI &nbsp;&nbsp; ✦ ZEERA &nbsp;&nbsp; ✦ PUDINA &nbsp;&nbsp;
+  </span>
+</div>
+
+<!-- LOVE -->
+<section id="love">
+  <h2>Not just a snack.<br/>A <span>feeling</span>.</h2>
+  <p>You know the one. Rain outside. Hot samosa in your hand. That first crunch — the shell gives way and the spiced aloo just tumbles out. For a second, nothing else matters.</p>
+  <p>It's the snack at every celebration, every chai break, every "bas ek aur" moment. The samosa doesn't need a reason. It is the reason.</p>
+  <div class="quote">Samosa kha, sab bhool ja.</div>
+  <p>Eat a samosa. Forget everything else.</p>
+</section>
+
+<!-- FACTS -->
+<section id="facts">
+  <div class="facts-head">
+    <span class="eyebrow">✦ Did You Know ✦</span>
+    <h2>Samosa <span>Gyaan</span></h2>
+  </div>
+  <div class="facts-grid">
+    <div class="fact-card">
+      <span class="fact-icon">🌍</span>
+      <div class="fact-title">Came from Central Asia</div>
+      <div class="fact-text">The samosa travelled to the subcontinent via Persian merchants over a thousand years ago. Punjab just perfected it.</div>
     </div>
+    <div class="fact-card">
+      <span class="fact-icon">📐</span>
+      <div class="fact-title">Three Sacred Corners</div>
+      <div class="fact-text">The triangular shape isn't random — it's engineered for the perfect filling-to-pastry ratio. Geometry, but make it delicious.</div>
+    </div>
+    <div class="fact-card">
+      <span class="fact-icon">🌶️</span>
+      <div class="fact-title">Spice is Non-Negotiable</div>
+      <div class="fact-text">Cumin, coriander, amchur, garam masala, green chilli — the filling is basically a whole spice market in one bite.</div>
+    </div>
+    <div class="fact-card">
+      <span class="fact-icon">☕</span>
+      <div class="fact-title">Chai's Best Friend</div>
+      <div class="fact-text">Samosa and chai is not a snack combo. It's a lifestyle. A philosophy. A reason to exist on a Tuesday afternoon.</div>
+    </div>
+  </div>
+</section>
 
-    <!-- ===== HEADER ===== -->
-    <header class="header">
-        <div class="container">
-            <h1>🥒 Punjabi Samosa Website 🥒</h1>
-            <p class="tagline">A celebration of authentic Punjabi samosas with traditional music!</p>
-            <div class="music-controls">
-                <button id="playBtn" class="music-btn">▶️ Play</button>
-                <button id="pauseBtn" class="music-btn">⏸️ Pause</button>
-                <button id="muteBtn" class="music-btn">🔇 Mute</button>
-            </div>
-        </div>
-    </header>
+<!-- CLOSER -->
+<section id="closer">
+  <h2>One song.<br/>One samosa.<br/><em>Pure bliss.</em></h2>
+  <span class="closer-samosa">🫓</span>
+  <p>ਜ਼ਿੰਦਗੀ ਸੋਹਣੀ ਹੈ — Life is beautiful.</p>
+</section>
 
-    <!-- ===== MAIN CONTENT ===== -->
-    <main class="container">
-        <!-- ABOUT SECTION -->
-        <section id="about" class="section">
-            <h2>🌟 About Punjabi Samosa</h2>
-            <div class="content-grid">
-                <div class="card">
-                    <h3>📜 History</h3>
-                    <p>The samosa is a deep-fried pastry with a savory filling, originating from Central Asia and deeply rooted in Punjabi cuisine. It's a beloved snack across India, Pakistan, and by Indian diaspora worldwide.</p>
-                </div>
-                <div class="card">
-                    <h3>🇮🇳 Cultural Significance</h3>
-                    <p>In Punjab, samosas are an integral part of celebrations, festivals, and daily gatherings. They represent hospitality and are often served with chai during family meetups and special occasions.</p>
-                </div>
-                <div class="card">
-                    <h3>❤️ Why We Love Samosas</h3>
-                    <p>The perfect combination of crispy exterior, flavorful spiced filling, and the joy of eating them with loved ones. Samosas bring people together and create lasting memories!</p>
-                </div>
-            </div>
-        </section>
+<footer>
+  <span>🫓 Samosa &amp; Vibes</span>
+  Made with masala &amp; love &nbsp;·&nbsp; Punjab ❤️
+</footer>
 
-        <!-- RECIPE SECTION -->
-        <section id="recipe" class="section">
-            <h2>👨‍🍳 Traditional Punjabi Samosa Recipe</h2>
-            
-            <div class="recipe-container">
-                <div class="recipe-part">
-                    <h3>🥘 Ingredients</h3>
-                    
-                    <h4>For the Dough:</h4>
-                    <ul>
-                        <li>2 cups All-purpose flour</li>
-                        <li>½ cup Ghee or Vegetable oil</li>
-                        <li>½ teaspoon Salt</li>
-                        <li>¼ teaspoon Baking soda</li>
-                        <li>Warm water (as needed)</li>
-                    </ul>
+<script>
+  const audio = document.getElementById('song');
+  let playing = false;
 
-                    <h4>For the Filling:</h4>
-                    <ul>
-                        <li>500g Potatoes (boiled & mashed)</li>
-                        <li>100g Green peas</li>
-                        <li>2 Green chilies (finely chopped)</li>
-                        <li>1 tablespoon Ginger-garlic paste</li>
-                        <li>½ teaspoon Cumin seeds</li>
-                        <li>½ teaspoon Coriander powder</li>
-                        <li>¼ teaspoon Garam masala</li>
-                        <li>¼ teaspoon Red chili powder</li>
-                        <li>½ teaspoon Mango powder (amchur)</li>
-                        <li>Salt to taste</li>
-                        <li>Fresh coriander leaves</li>
-                        <li>2 tablespoons Oil</li>
-                    </ul>
-                </div>
+  document.getElementById('enterbtn').addEventListener('click', function() {
+    const splash = document.getElementById('splash');
+    splash.classList.add('gone');
+    setTimeout(() => splash.style.display = 'none', 1000);
+    audio.play().then(() => {
+      playing = true;
+    }).catch(() => {
+      playing = false;
+      document.getElementById('bars').classList.add('paused');
+      document.getElementById('mlabel').textContent = 'Click to play';
+    });
+  });
 
-                <div class="recipe-part">
-                    <h3>👣 Step-by-Step Instructions</h3>
-                    
-                    <h4>Preparing the Dough:</h4>
-                    <ol>
-                        <li>Mix flour, salt, and baking soda in a bowl</li>
-                        <li>Add ghee and mix until it resembles breadcrumbs</li>
-                        <li>Add warm water gradually and knead into a stiff dough</li>
-                        <li>Cover and let rest for 30 minutes</li>
-                    </ol>
-
-                    <h4>Making the Filling:</h4>
-                    <ol>
-                        <li>Heat oil in a pan and add cumin seeds</li>
-                        <li>Add ginger-garlic paste and sauté for 1 minute</li>
-                        <li>Add green chilies and cook for 30 seconds</li>
-                        <li>Add boiled mashed potatoes and peas</li>
-                        <li>Add all spices and mix well</li>
-                        <li>Add fresh coriander leaves</li>
-                        <li>Cook for 3-4 minutes and let cool completely</li>
-                    </ol>
-
-                    <h4>Assembling & Frying:</h4>
-                    <ol>
-                        <li>Divide dough into small balls (about 1 inch diameter)</li>
-                        <li>Roll each ball into a thin circle</li>
-                        <li>Cut the circle in half</li>
-                        <li>Make a cone shape by folding the semicircle</li>
-                        <li>Fill with spiced potato mixture</li>
-                        <li>Seal the top by pressing edges</li>
-                        <li>Deep fry in hot oil until golden brown</li>
-                        <li>Drain on paper towels</li>
-                    </ol>
-                </div>
-            </div>
-
-            <div class="tips-box">
-                <h3>💡 Pro Tips:</h3>
-                <ul>
-                    <li>Keep the dough stiff to make folding easier</li>
-                    <li>Oil should be hot enough (around 350°F) for perfect crispiness</li>
-                    <li>Don't overfill the samosa as it may burst during frying</li>
-                    <li>Let the filling cool before filling samosas</li>
-                    <li>Serve hot with mint chutney or tamarind sauce</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- GALLERY SECTION -->
-        <section id="gallery" class="section">
-            <h2>🖼️ Samosa Gallery</h2>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background: linear-gradient(135deg, #ff6b35, #f7931e);">
-                        <span>🥒</span>
-                    </div>
-                    <p>Golden Samosa</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background: linear-gradient(135deg, #f7931e, #ffa500);">
-                        <span>🥒</span>
-                    </div>
-                    <p>Crispy Delight</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background: linear-gradient(135deg, #d4641b, #ff6b35);">
-                        <span>🥒</span>
-                    </div>
-                    <p>Punjabi Special</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background: linear-gradient(135deg, #ff8c00, #ffa500);">
-                        <span>🥒</span>
-                    </div>
-                    <p>Perfect Samosa</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background: linear-gradient(135deg, #ff6347, #ff6b35);">
-                        <span>🥒</span>
-                    </div>
-                    <p>Fresh & Hot</p>
-                </div>
-                <div class="gallery-item">
-                    <div class="gallery-image" style="background: linear-gradient(135deg, #ffd700, #f7931e);">
-                        <span>🥒</span>
-                    </div>
-                    <p>Traditional Style</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CHUTNEY SECTION -->
-        <section id="chutneys" class="section">
-            <h2>🫶 Chutney Guide</h2>
-            <div class="content-grid">
-                <div class="card chutney-card">
-                    <h3>🌿 Mint Chutney</h3>
-                    <p><strong>Ingredients:</strong> Fresh mint, coriander, green chilies, coconut, lemon juice, salt</p>
-                    <p><strong>Best with:</strong> Samosas, pakoras, spring rolls</p>
-                    <p><strong>Flavor:</strong> Cool, refreshing, and tangy with a spicy kick</p>
-                </div>
-                <div class="card chutney-card">
-                    <h3>🍋 Tamarind Chutney</h3>
-                    <p><strong>Ingredients:</strong> Tamarind, jaggery, cumin, ginger, salt, red chili powder</p>
-                    <p><strong>Best with:</strong> All snacks and street food</p>
-                    <p><strong>Flavor:</strong> Sweet, sour, and mildly spicy</p>
-                </div>
-                <div class="card chutney-card">
-                    <h3>🌶️ Red Chili Chutney</h3>
-                    <p><strong>Ingredients:</strong> Red chilies, garlic, cumin seeds, salt, oil</p>
-                    <p><strong>Best with:</strong> For spice lovers</p>
-                    <p><strong>Flavor:</strong> Bold, fiery, and intensely spicy</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- CONTACT SECTION -->
-        <section id="contact" class="section">
-            <h2>📧 Get in Touch</h2>
-            <p>Have questions or suggestions about samosas? We'd love to hear from you!</p>
-            <form id="contactForm" class="contact-form">
-                <div class="form-group">
-                    <label for="name">Your Name:</label>
-                    <input type="text" id="name" name="name" required>
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message:</label>
-                    <textarea id="message" name="message" rows="5" required></textarea>
-                </div>
-                <button type="submit" class="btn">Send Message 📤</button>
-            </form>
-        </section>
-    </main>
-
-    <!-- ===== FOOTER ===== -->
-    <footer class="footer">
-        <div class="container">
-            <p>&copy; 2026 Punjabi Samosa Website. Made with ❤️ for samosa lovers everywhere!</p>
-            <p>🥒 Keyboard Shortcuts: <strong>P</strong> - Play | <strong>SPACE</strong> - Toggle | <strong>M</strong> - Mute 🎵</p>
-        </div>
-    </footer>
-
-    <script src="script.js"></script>
+  document.getElementById('mbar').addEventListener('click', function() {
+    if (playing) {
+      audio.pause();
+      playing = false;
+      document.getElementById('bars').classList.add('paused');
+      document.getElementById('mlabel').textContent = 'Paused';
+    } else {
+      audio.play().then(() => {
+        playing = true;
+        document.getElementById('bars').classList.remove('paused');
+        document.getElementById('mlabel').textContent = 'Now Playing';
+      }).catch(() => {});
+    }
+  });
+</script>
 </body>
 </html>
